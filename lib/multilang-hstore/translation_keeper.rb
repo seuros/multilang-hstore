@@ -13,7 +13,7 @@ module Multilang
     end
 
     def value(locale = nil)
-      @translations.value(locale)
+      @translations.try(:value,locale)
     end
 
     def current_or_any_value
@@ -111,8 +111,7 @@ module Multilang
           return ''
         end
 
-        def value(locale = nil)
-          locale ||= actual_locale
+        def value(locale = I18n.locale)
           read(locale)
         end
 
